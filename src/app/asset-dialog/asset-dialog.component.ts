@@ -14,7 +14,7 @@ import { URLS } from '../urls';
 export class AssetDialogComponent implements OnInit {
   stores = [];
   isEdit: Boolean = false;
-  aseet= { "type": "", "location": "", "weight": "", "temperature": "", "usebydata": "" };
+  aseet= { "type": "", "location": "", "weight": "", "temperature": "", "usebydate": "" };
   buttonText = "Save";
   form = new FormGroup({
     type: new FormControl(''),
@@ -36,7 +36,7 @@ export class AssetDialogComponent implements OnInit {
       this.aseet.location = data['location'];
       this.aseet.weight = data['weight'];
       this.aseet.temperature = data['temperature'];
-      this.aseet.usebydata = data['usebydate']
+      this.aseet.usebydate = data['usebydate']
       //var owner = JSON.parse(data['Owner'])
       //this.aseet.Owner = owner.user;
     }
@@ -51,9 +51,10 @@ export class AssetDialogComponent implements OnInit {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        //'Access-Control-Allow-Origin': '*'
 
-      })
+      }),
+      responseType:'text'
     }
     if (this.data) {
       var request = { "type": this.form.value.type, "location": this.form.value.location, "weight": this.data.weight, "temperature": this.form.value.temperature, /*"Owner": { "org": "Org1MSP", "user": this.form.value.Owner }*/ };
@@ -64,8 +65,9 @@ export class AssetDialogComponent implements OnInit {
       })
     }else{
       this._http.post<any>(URLS.CREATE, JSON.stringify(this.form.value), this.httpOptions).subscribe((data: any) => {
+        console.log(JSON.stringify(this.form.value));
         console.log(data);
-        var response = { "type": this.form.value.type, "location": this.form.value.location, "weight": this.form.value.weight,"temperature": this.form.value.temperature, "usebydate": this.form.value.usebydate, /*"Owner": JSON.stringify({ "org": "Org1MSP", "user": this.form.value.Owner })*/ };
+        var response = { "id":data,"type": this.form.value.type, "location": this.form.value.location, "weight": this.form.value.weight,"temperature": this.form.value.temperature, "usebydate": this.form.value.usebydate, /*"Owner": JSON.stringify({ "org": "Org1MSP", "user": this.form.value.Owner })*/ };
         this.dialogRef.close(response)
       })
     }

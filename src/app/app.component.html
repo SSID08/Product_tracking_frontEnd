@@ -1,4 +1,4 @@
-<mat-toolbar   color="primary"><div style="text-align: center;width: 100%;">Asset (Create,Edit,Delete,Transfer)</div></mat-toolbar>
+<mat-toolbar   color="accent"><div style="text-align: center;width: 100%;">Product Tracking (beta)</div></mat-toolbar>
 <div class="layout">
     <div class="layout">
         Assets
@@ -10,10 +10,11 @@
                 Asset</button>
         </div>
         <table mat-table matTableExporter [dataSource]="dataSource" matSort class="mat-elevation-z8"
-            style="width: 100%;">
+            style="width: 100%;left: 20px;top: 200px;position: fixed;">
+            <!-- check this again -->
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row;let i = index; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns_2"></tr>
+            <tr mat-row *matRowDef="let row;let i = index; columns: displayedColumns_2;"></tr>
             <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
                 <td mat-cell *matCellDef="let element; let i = index"> {{ (i+1) + (paginator.pageIndex *
@@ -22,10 +23,6 @@
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
                 <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-            <ng-container matColumnDef="owner_org">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> owner_org </th>
-                <td mat-cell *matCellDef="let element"> {{element.owner_Org}} </td>
             </ng-container>
             <ng-container matColumnDef="transfer_org">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> transfer_org </th>
@@ -39,18 +36,34 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> location </th>
                   <td mat-cell *matCellDef="let element"> {{element.location}} </td>
             </ng-container>
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-          </ng-container>
-          <ng-container matColumnDef="temperature">
+            <ng-container matColumnDef="temperature">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> temperature </th>
               <td mat-cell *matCellDef="let element"> {{element.temperature}} </td>
-        </ng-container>
-        <ng-container matColumnDef="usebydate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> usebydate </th>
-            <td mat-cell *matCellDef="let element"> {{element.useByDate}} </td>
-      </ng-container>
+            </ng-container>
+            <ng-container matColumnDef="View">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> View </th>
+                <td mat-cell *matCellDef="let element;let i = index" style="padding-right: 15px;">
+                    <span class="material-icons" style="cursor:pointer;" (click)="view(element,i)">pageview</span>>
+                </ng-container>
+            <ng-container matColumnDef="transfer">
+                <th mat-header-cell *matHeaderCellDef> Transfer </th>
+                <td mat-cell *matCellDef="let element;let i = index" style="padding-right: 15px;">
+                    <span class="material-icons" style="cursor: pointer;" (click)="delete(element,i)">arrow_forward</span>
+            </td>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> Edit </th>
+                <td mat-cell *matCellDef="let element;let i = index" style="padding-right: 15px;">
+                    <span class="material-iccons" style="cursor: pointer;" (click)="editRow(element,i)">edit</span>
+                </td>
+                </ng-container>
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element;let i = index" style="padding-right: 15px;">
+            <span class="material-icons" style="cursor: pointer;" (click)="delete(element,i)">delete</span>
+        </td>
+    </ng-container>
+
         </table>
         <mat-paginator [length]="100" showFirstLastButtons [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
         </mat-paginator>

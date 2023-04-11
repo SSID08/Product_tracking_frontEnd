@@ -15,11 +15,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { UpdateAssetComponent } from './update-asset/update-asset.component';
+import { ViewAssetComponent } from './view-asset/view-asset.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AssetDialogComponent
+    AssetDialogComponent,
+    UpdateAssetComponent,
+    ViewAssetComponent,
   ],
   imports: [
     BrowserModule,

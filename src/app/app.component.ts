@@ -6,7 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AssetDialogComponent } from './asset-dialog/asset-dialog.component';
+import { UpdateAssetComponent } from './update-asset/update-asset.component';
 import { URLS } from './urls';
+import { ProductTemplate } from './product-template';
+import { ViewAssetComponent } from './view-asset/view-asset.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +24,8 @@ export class AppComponent implements OnInit {
   httpOptions;
   title = 'frontend';
   assets = [];
-  displayedColumns: String[] = ["position", "id",'owner_org','transfer_org','type',"location" ,'weight','temperature','usebydate'];
+  displayedColumns: String[] = ["position", "id",'owner_org','transfer_org','type',"location" ,'weight','temperature','usebydate','View','transfer','edit','delete'];
+  displayedColumns_2:String[] = ["position","id","transfer_org","type","location","temperature","View","transfer","edit","delete"];
   constructor(private _http: HttpClient, private dialog: MatDialog,private snackBar:MatSnackBar) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -50,8 +54,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
  }
-  editRow(asset:any,index:number){
-    const dialogRef = this.dialog.open(AssetDialogComponent, {
+  editRow(asset:ProductTemplate,index:number){
+    const dialogRef = this.dialog.open(UpdateAssetComponent, {
       width: '500px', height: '100vh',position:{right:'0'},data:asset
 
     });
@@ -62,6 +66,20 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  view(asset:ProductTemplate,index:number){
+    const dialogRef = this.dialog.open(ViewAssetComponent, {
+      width: '700px', height: '100vh',position:{right:'0'},data:asset
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data[index]=(result)
+        this.dataSource._updateChangeSubscription();
+      }
+    });
+  }
+
   delete(asset:any,index:number){
     this._http.post<any>(URLS.DELETE,JSON.stringify({"id":asset.ID}),this.httpOptions).subscribe((data:any) => {
       console.log(data);
