@@ -45,6 +45,12 @@ export class AssetDialogComponent implements OnInit {
   ngOnInit() {
 
   }
+  openSnackBar() {
+    this.snackBar.open('Asset Created', 'Close', {
+      duration: 2000,
+    });
+    this.dialogRef.close(); // close the dialog form
+  }
 
   onSubmit() {
     console.log(this.form.value);

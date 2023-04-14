@@ -54,6 +54,13 @@ export class UpdateAssetComponent implements OnInit {
 
   }
 
+  openSnackBar() {
+    this.snackBar.open('Product Updated', 'Close', {
+      duration: 2000,
+    });
+    this.dialogRef.close(); // close the dialog form
+  }
+
   UpdateLocation(){
     var request = {"id":this.data.id,"location":this.form.value.location}
     console.log('Entered update location');

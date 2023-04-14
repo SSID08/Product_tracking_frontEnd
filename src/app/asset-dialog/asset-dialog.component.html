@@ -2,13 +2,13 @@
     <mat-icon>highlight_off</mat-icon>
   </span>
   <div style="margin: 20px;">
-      <div style="font-size: 1.5em; text-align: center;  margin-bottom: 15px;">Asset create/edit</div>
+      <div style="font-size: 1.5em; text-align: center;  margin-bottom: 15px;">Add Asset</div>
       <form (ngSubmit)="onSubmit()">
         <div fxLayout="column" fxLayoutAlign="space-around">
           <div class="row">
             <div class="col-sm-12 ">
               <mat-form-field appearance="outline">
-                <mat-label>type</mat-label>
+                <mat-label>Type</mat-label>
                 <input matInput type="text" required [formControl]="form.controls['type']" [(ngModel)]="aseet.type">
               </mat-form-field>
               <small *ngIf="form.controls['type'].hasError('required') && form.controls['type'].touched"
@@ -16,7 +16,7 @@
             </div>
             <div class="col-sm-12 ">
                 <mat-form-field appearance="outline">
-                  <mat-label>location</mat-label>
+                  <mat-label>Location</mat-label>
                   <input matInput type="text" required [formControl]="form.controls['location']" [(ngModel)]="aseet.location">
                 </mat-form-field>
                 <small *ngIf="form.controls['location'].hasError('required') && form.controls['location'].touched"
@@ -24,7 +24,7 @@
               </div>
               <div class="col-sm-12 ">
                 <mat-form-field appearance="outline">
-                  <mat-label>temperature</mat-label>
+                  <mat-label>Temperature(°C)</mat-label>
                   <input matInput type="number" required [formControl]="form.controls['temperature']" [(ngModel)]="aseet.temperature">
                 </mat-form-field>
                 <small *ngIf="form.controls['temperature'].hasError('required') && form.controls['temperature'].touched"
@@ -32,7 +32,7 @@
               </div>
               <div class="col-sm-12 ">
                 <mat-form-field appearance="outline">
-                  <mat-label>weight</mat-label>
+                  <mat-label>Weight(kg)</mat-label>
                   <input matInput type="number" required [formControl]="form.controls['weight']" [(ngModel)]="aseet.weight">
                 </mat-form-field>
                 <small *ngIf="form.controls['weight'].hasError('required') && form.controls['weight'].touched"
@@ -51,8 +51,9 @@
 
         </div>
         <div style="text-align: center;">
-          <button mat-raised-button color="primary"  type="submit" [disabled]="!form.valid"
-            style="margin-top:10px;">Create/Update</button>
+          <button mat-raised-button (click)="dialogRef.close()" aria-label="Cancel">Cancel</button>
+          <span style="padding-left: 10px;"></span> <!-- Add some padding between the buttons -->
+          <button mat-raised-button color="primary" (click)="openSnackBar()" aria-label="Show an example snack-bar">Submit</button>
 
       </div>
       </form>
