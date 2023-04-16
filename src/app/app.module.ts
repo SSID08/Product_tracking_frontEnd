@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UpdateAssetComponent } from './update-asset/update-asset.component';
 import { ViewAssetComponent } from './view-asset/view-asset.component';
+import{DeleteAssetComponent} from './delete-asset/delete-asset.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ViewAssetComponent } from './view-asset/view-asset.component';
     AssetDialogComponent,
     UpdateAssetComponent,
     ViewAssetComponent,
+    DeleteAssetComponent,
   ],
   imports: [
     BrowserModule,

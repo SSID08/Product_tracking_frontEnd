@@ -8,4 +8,7 @@ export class URLS {
     public static UpdateWeight= URLS.IP + "/updateWeight";
     public static UPDATE = URLS.IP + "update";
     public static DELETE = URLS.IP + "delete";
+    public static DELETEASSET = URLS.IP + "/deleteasset";
+    public static LINKEXPERIMENT = URLS.IP + "/linkExperiment"
+  static aseets: any;
 }

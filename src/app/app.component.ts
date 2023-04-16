@@ -10,6 +10,7 @@ import { UpdateAssetComponent } from './update-asset/update-asset.component';
 import { URLS } from './urls';
 import { ProductTemplate } from './product-template';
 import { ViewAssetComponent } from './view-asset/view-asset.component';
+import { DeleteAssetComponent} from './delete-asset/delete-asset.component';
 
 @Component({
   selector: 'app-root',
@@ -89,6 +90,20 @@ export class AppComponent implements OnInit {
       });
        })
   }
+
+  deleteasset(asset:ProductTemplate,index:number){
+    const dialogRef = this.dialog.open(DeleteAssetComponent, {
+      width: '500px', height: '100vh',position:{right:'0'},data:asset
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data[index]=(result)
+        this.dataSource._updateChangeSubscription();
+      }
+    });
+  }   
+
   addNewAsset(){
     const dialogRef = this.dialog.open(AssetDialogComponent, {
       width: '500px', height: '100vh',position:{right:'0'},
