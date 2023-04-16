@@ -11,6 +11,7 @@ import { URLS } from './urls';
 import { ProductTemplate } from './product-template';
 import { ViewAssetComponent } from './view-asset/view-asset.component';
 import { DeleteAssetComponent} from './delete-asset/delete-asset.component';
+import { TransferAssetComponent } from './transfer-asset/transfer-asset.component';
 
 @Component({
   selector: 'app-root',
@@ -57,6 +58,19 @@ export class AppComponent implements OnInit {
  }
   editRow(asset:ProductTemplate,index:number){
     const dialogRef = this.dialog.open(UpdateAssetComponent, {
+      width: '500px', height: '100vh',position:{right:'0'},data:asset
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data[index]=(result)
+        this.dataSource._updateChangeSubscription();
+      }
+    });
+  }
+
+  transfer(asset:ProductTemplate,index:number){
+    const dialogRef = this.dialog.open(TransferAssetComponent, {
       width: '500px', height: '100vh',position:{right:'0'},data:asset
 
     });

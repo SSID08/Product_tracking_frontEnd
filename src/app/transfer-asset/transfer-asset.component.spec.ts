@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteAssetComponent } from './delete-asset.component';
+import { TransferAssetComponent } from './transfer-asset.component';
 
-describe('DeleteAssetComponent', () => {
-  let component: DeleteAssetComponent;
-  let fixture: ComponentFixture<DeleteAssetComponent>;
+describe('TransferAssetComponent', () => {
+  let component: TransferAssetComponent;
+  let fixture: ComponentFixture<TransferAssetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteAssetComponent ]
+      declarations: [ TransferAssetComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteAssetComponent);
+    fixture = TestBed.createComponent(TransferAssetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

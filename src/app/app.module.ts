@@ -18,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { UpdateAssetComponent } from './update-asset/update-asset.component';
 import { ViewAssetComponent } from './view-asset/view-asset.component';
 import{DeleteAssetComponent} from './delete-asset/delete-asset.component';
+import {TransferAssetComponent} from './transfer-asset/transfer-asset.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import{DeleteAssetComponent} from './delete-asset/delete-asset.component';
     UpdateAssetComponent,
     ViewAssetComponent,
     DeleteAssetComponent,
+    TransferAssetComponent
   ],
   imports: [
     BrowserModule,

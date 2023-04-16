@@ -43,6 +43,13 @@
                   <input matInput type="text" [formControl]="form.controls['transfer_status']" [(ngModel)]="data.transferTo_Org" [readonly]="true">
                 </mat-form-field>
               </div>
+              <div class="col-md-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label *ngIf="data.experiment_id!=''"> Experiment ID link Status</mat-label>
+                  <mat-label *ngIf="data.experiment_id==''">No Experiment linked requested</mat-label>
+                  <input matInput type="text" [formControl]="form.controls['experiment_id']" [(ngModel)]="data.experiment_id" [readonly]="true">
+                </mat-form-field>
+              </div>
           </div>
         </div>
       </form>

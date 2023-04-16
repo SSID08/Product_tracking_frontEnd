@@ -13,7 +13,7 @@ import { URLS } from '../urls';
 export class ViewAssetComponent implements OnInit {
   httpOptions: any;
   data:any;
-  aseet= { "type": "", "location": "", "weight": "", "temperature": "", "usebydate": "" };
+  aseet= { "type": "", "location": "", "weight": "", "temperature": "", "usebydate": "", "experiment_id":"" };
   form = new FormGroup({
     id: new FormControl(''),
     location: new FormControl(''),
@@ -21,6 +21,7 @@ export class ViewAssetComponent implements OnInit {
     temperature: new FormControl(''),
     usebydate:new FormControl(''),
     transfer_status:new FormControl(''),
+    experiment_id: new FormControl('')
 
   });
   constructor(public dialogRef: MatDialogRef<any, any>,

@@ -15,13 +15,13 @@ import { ProductTemplate } from '../product-template';
 export class UpdateAssetComponent implements OnInit {
   stores = [];
   isEdit: Boolean = false;
-  aseet= { "type": "", "location": "", "weight": "", "temperature": "","LinkExperiment":"", "usebydate": "" };
+  aseet= { "type": "", "location": "", "weight": "", "temperature": "","experiment_id":"", "usebydate": "" };
   buttonText = "Save";
   form = new FormGroup({
     location: new FormControl(''),
     weight: new FormControl(''),
     temperature: new FormControl(''),
-    LinkExperiment: new FormControl(''),
+    experiment_id: new FormControl(''),
     usebydate:new FormControl('')
 
   });
@@ -45,7 +45,7 @@ export class UpdateAssetComponent implements OnInit {
       this.aseet.location = data['location'];
       this.aseet.weight = data['weight'];
       this.aseet.temperature = data['temperature'];
-      this.aseet.LinkExperiment =data['LinkExperiment']
+      this.aseet.experiment_id =data['experiment_id']
       this.aseet.usebydate = data['usebydate']
       //var owner = JSON.parse(data['Owner'])
       //this.aseet.Owner = owner.user;
@@ -94,21 +94,14 @@ export class UpdateAssetComponent implements OnInit {
 
   }
 
-  onFileSelected(event: { target: { files: File[]; }; }) {
-    const file: File = event.target.files[0];
-    // handle the file here
-  }  
 
-  Linkexperiment(){
-    const formData = new FormData();
-    formData.append('file', this.file);
-    formData.append('id', this.data.id);
-  
-    this._http.post(URLS.LINKEXPERIMENT, formData, this.httpOptions).subscribe((data:any)=>{
+  Linkexperiment(){  
+    var request = {"id":this.data.id,"experiment_id":this.form.value.experiment_id}
+    this._http.post(URLS.LINKEXPERIMENT,JSON.stringify(request),this.httpOptions).subscribe((data:any)=>{
       console.log(data);
-      this.data.location = this.form.value.location;
+      this.data.location=this.form.value.location;
       this.dialogRef.close(this.data);
-    });
+    })
   }
   
   

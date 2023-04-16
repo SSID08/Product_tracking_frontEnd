@@ -37,6 +37,17 @@
                   style="margin-top:10px;" (click)="UpdateWeight()">Update Weight</button>
               </div>
           </div>
+          <div class="col-sm-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Link Experiment</mat-label>
+              <input matInput type="text" pattern="[a-zA-Z0-9]*" [formControl]="form.controls['experiment_id']" [(ngModel)]="data.LinkExperiment">
+            </mat-form-field>
+            <small *ngIf="form.controls['experiment_id'].hasError('pattern') && form.controls['experiment_id'].touched"
+              class="mat-text-warn">Only alphanumeric characters are allowed</small>
+            <button mat-raised-button color="primary" type="submit"
+              [disabled]="form.controls['experiment_id'].invalid && form.controls['experiment_id'].touched"
+              style="margin-top:10px;" (click)="Linkexperiment()">Link Experiment</button>
+          </div>
           <div class="col-sm-12 ">
             <mat-form-field appearance="outline">
               <mat-label>Use By Date</mat-label>
@@ -44,16 +55,6 @@
             </mat-form-field>
             <small *ngIf="form.controls['usebydate'].hasError('required') && form.controls['usebydate'].touched"
               class="mat-text-warn">You must include Use By Date</small>
-          </div>
-          <div class="col-sm-12 ">
-            <mat-form-field appearance="outline">
-              <mat-label>Link Experiment</mat-label>
-              <input type="file" (change)="onFileSelected($event)">
-            </mat-form-field>
-            <small *ngIf="form.controls['LinkExperiment'].hasError('required') && form.controls['LinkExperiment'].touched"
-              class="mat-text-warn">You must include weight</small>
-              <button mat-raised-button color="primary"  type="submit" [disabled]="!form.controls['LinkExperiment'].touched"
-              style="margin-top:10px;" (click)="Linkexperiment()">Link Experiment</button>
           </div>
         </div>
         <div style="text-align: center; padding-top: 10px;">
